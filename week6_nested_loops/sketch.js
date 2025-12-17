@@ -1,5 +1,5 @@
 // ------------------------------
-// Beginner-Friendly Image Filters
+// Image Filters
 // ------------------------------
 
 let img;
