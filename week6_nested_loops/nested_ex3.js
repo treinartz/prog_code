@@ -1,31 +1,26 @@
 let img;
 
 function preload() {
-  // Load an image before setup
-  img = loadImage("flower2.jpg"); // Make sure a pic.jpg is in your sketch folder
+  //Load an image before setup
+  //upload a 200x200 px image (press the + button on the laf)
+  //replace "flower.jpg" with the name of your image
+  img = loadImage("flower2.jpg"); 
 }
 
 function setup() {
-  createCanvas(img.width, img.height * 2);
-  noLoop(); // Only draw once
+  createCanvas(img.width, img.height * 2);//make room for 2 images
+  noLoop(); 
 }
 
 function draw() {
   background(220);
-
   // Display the original image at the top
   image(img, 0, 0);
-
   // Display red-tint filter at bottom
   image(applyRedTint(img), 0, img.height);
 }
 
-// ------------------------------
-// Filter Function
-// ------------------------------
-
-// Red-tint filter: currently keeps red high, reduced green and blue
-//experiment with the values, then turn red off
+//Red-tint filter: currently keeps red high, reduced green and blue
 function applyRedTint(sourceImg) {
   let newImg = createImage(sourceImg.width, sourceImg.height);
   newImg.loadPixels();
@@ -33,10 +28,20 @@ function applyRedTint(sourceImg) {
   for (let x = 0; x < sourceImg.width; x++) {
     for (let y = 0; y < sourceImg.height; y++) {
       let c = sourceImg.get(x, y);
-      newImg.set(x, y, color(red(c), green(c) * 0.3, blue(c) * 0.3));
+      let r = red(c);
+      let g = green(c);
+      let b = blue(c);
+      let a = alpha(c);
+      //adjust the values below to make your own filter!
+      newImg.set(x, y, color(r, g * 0.3, b * 0.3, a));
     }
   }
-
   newImg.updatePixels();
   return newImg;
+}
+
+function keyPressed() {
+  if (key === "s") {
+    save("redFilter.jpg");
+  }
 }
