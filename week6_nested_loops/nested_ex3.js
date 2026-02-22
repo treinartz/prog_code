@@ -4,6 +4,7 @@ function preload() {
   //Load an image before setup
   //upload a 200x200 px image (press the + button on the laf)
   //replace "flower.jpg" with the name of your image
+  //look for the word 'adjust' below to make your own version of this filter
   img = loadImage("flower2.jpg"); 
 }
 
